@@ -1,0 +1,57 @@
+<nav class="bg-gray-900 text-white shadow-md">
+    <div class="max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center space-x-6 h-16">
+        <!-- Logo -->
+        <a href="/" class="text-2xl font-bold text-blue-400">Bloggify</a>
+  
+        <!-- Navigation Links -->
+        <div class="flex space-x-6 text-lg">
+          <a href="/" class="hover:text-blue-400 transition">Home</a>
+          <% if (locals.user) { %>
+          <a href="/newblog" class="hover:text-blue-400 transition">
+            Add Blog
+          </a>
+          <% } %>
+  
+          <!-- User Section (Dropdown or Log In/Sign Up) -->
+          <% if (locals.user) { %>
+          <div class="relative group">
+            <button
+              class="flex items-center space-x-2 hover:text-blue-400 transition"
+            >
+              <span><%= locals.user.email %></span>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+  
+            <!-- Dropdown Content -->
+            <div
+              class="absolute left-0 w-40 bg-white text-black rounded-md shadow-lg hidden group-hover:block"
+            >
+              <a href="/user/logout" class="block px-4 py-2 hover:bg-gray-200"
+                >Logout</a
+              >
+            </div>
+          </div>
+          <% } else { %>
+          <!-- Log In & Sign Up Buttons -->
+          <a href="/signin" class="hover:text-blue-400 transition">Log In</a>
+          <a href="/signup" class="hover:text-blue-400 transition">Sign Up</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
