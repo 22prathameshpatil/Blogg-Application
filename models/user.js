@@ -76,6 +76,12 @@ userSchema.static(
   }
 );
 
+userSchema.virtual("blogs", {
+  ref: "blog",
+  localField: "_id",
+  foreignField: "createdBy",
+});
+
 const USER = model("user", userSchema);
 
 module.exports = USER;

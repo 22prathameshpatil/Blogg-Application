@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const staticRouter = Router();
 const BLOG = require('../models/blog');
+const { checkStrictAuth } = require("../middlewares/strictAuthentication");
 
 staticRouter.get("/", async (req, res) => {
   const allBlogs = await BLOG.find({});
@@ -15,12 +16,15 @@ staticRouter.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-staticRouter.get("/newblog", (req, res) => {
-  res.render("addBlog");
+staticRouter.get("/newblog", checkStrictAuth, (req, res) => {
+  res.render("addBlog", { user: req.user });
 });
+
 
 staticRouter.get("/forgetpassword", (req, res) => {
   res.render("forgetPassword");
 });
+
+
 
 module.exports = staticRouter;
